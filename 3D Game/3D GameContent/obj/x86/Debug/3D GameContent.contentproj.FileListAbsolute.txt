@@ -1,0 +1,2 @@
+c:\users\mini hp\documents\visual studio 2010\3DProject\3D Game\3D Game\3D GameContent\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\mini hp\Documents\Visual Studio 2010\3DProject\3D Game\3D Game\3D GameContent\obj\x86\Debug\Audio\GameAudio.xml
