@@ -3,7 +3,7 @@
   <Asset Type="Graphics:NodeContent">
     <Name>Frame_World</Name>
     <Identity>
-      <SourceFilename>C:\Users\mini hp\Documents\Visual Studio 2010\3DProject\3D Game\3D Game\3D GameContent\Models\ammo.x</SourceFilename>
+      <SourceFilename>C:\Users\Julian\Documents\GitHub\3D-Game\3D Game\3D GameContent\Models\ammo.x</SourceFilename>
       <SourceTool>XImporter</SourceTool>
     </Identity>
     <Transform>1 0 0 0 0 1 0 0 0 0 -1 0 0 0 0 1</Transform>
@@ -43,7 +43,7 @@
   <Resources>
     <Resource ID="#Resource1" Type="Graphics:BasicMaterialContent">
       <Identity>
-        <SourceFilename>C:\Users\mini hp\Documents\Visual Studio 2010\3DProject\3D Game\3D Game\3D GameContent\Models\ammo.x</SourceFilename>
+        <SourceFilename>C:\Users\Julian\Documents\GitHub\3D-Game\3D Game\3D GameContent\Models\ammo.x</SourceFilename>
         <SourceTool>XImporter</SourceTool>
       </Identity>
       <OpaqueData>

@@ -22,14 +22,20 @@ namespace _3D_Game
         SoundBank soundBank;
         Cue trackCue;
 
+        // Shot variables could be used for special shots too &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
         float shotSpeed = 10;
         int shotDelay = 300;
         int shotCountdown = 0;
+        int specialShotCountdown = 0;
+        int specialList = 5;
 
         // For random numbers
         public Random rnd { get; protected set; }
         // For camera
         public Camera camera { get; protected set; }
+
+        //For model manager direction &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+     //   public SpinningEnemy spinningEnemy2 { get; }
 
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
@@ -59,6 +65,7 @@ namespace _3D_Game
         int powerUpTextTimer = 0;
         SpriteFont powerUpFont;
 
+       
 
 
 
@@ -204,9 +211,13 @@ namespace _3D_Game
             {
                 // see if the player fierd a shot
                 FireShots(gameTime);
+                FireSpecialShots(gameTime);
             }
 
             UpdatePowerUp(gameTime);
+
+            
+
             base.Update(gameTime);
         }
 
@@ -233,10 +244,15 @@ namespace _3D_Game
                 spriteBatch.DrawString(scoreFont, scoreText,
                     new Vector2(10, 10), Color.Red);
 
+                string WeaponText = "Special Weapon: " + specialList;
+                spriteBatch.DrawString(scoreFont, WeaponText,
+                    new Vector2(10, scoreFont.MeasureString(scoreText).Y + 40),
+                    Color.Red);
+
                 //Let the player know how maney misses left
                 spriteBatch.DrawString(scoreFont, "Misses Left: " +
                     modelManager.missesLeft,
-                    new Vector2(10, scoreFont.MeasureString(scoreText).Y + 20),
+                    new Vector2(10, scoreFont.MeasureString(scoreText).Y + 10),
                     Color.Red);
                 spriteBatch.Draw(crosshairTexture,
                     new Vector2((Window.ClientBounds.Width / 2)
@@ -284,6 +300,42 @@ namespace _3D_Game
             else
                 shotCountdown -= gameTime.ElapsedGameTime.Milliseconds;
         }
+
+        protected void FireSpecialShots(GameTime gameTime) //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+        {
+            if (specialList > 0)
+            {
+                if (specialShotCountdown <= 0)
+                {
+                    //Did the player press the spacebare or left  click
+                    if (Keyboard.GetState().IsKeyDown(Keys.X) ||
+                        Mouse.GetState().RightButton == ButtonState.Pressed)
+                    {
+                        //Add a shot to the model manager &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+
+                        Vector3 localDirection;
+                        Vector3 localPosition;
+
+                        localDirection = modelManager.getDirectionEnemy;
+                        localPosition = modelManager.getPositionEnemy();
+
+                        modelManager.AddSpecialShots(camera.cameraPosition + new Vector3(0, 5, 0),
+                            camera.GetCameraDirection * (shotSpeed / 4));
+                        //play shot sound
+                        PlayCue("Shot");
+                        --specialList;
+
+                        //reset the shot count down
+                        specialShotCountdown = shotDelay;
+                    }
+                }
+                else
+                    specialShotCountdown -= gameTime.ElapsedGameTime.Milliseconds;
+                
+            }
+
+        }
+
 
         public void PlayCue(string cue)
         {

@@ -1,13 +1,13 @@
 Content\Models\spaceship.xnb
 Content\Models\ammo.xnb
-Content\Textures\Crosshair.xnb
 Content\Textures\Particle.xnb
+Content\Textures\Crosshair.xnb
 Content\Textures\ParticleColors.xnb
-Content\Effects\Particle.xnb
 Content\Textures\Stars.xnb
+Content\Effects\Particle.xnb
+Content\Fonts\ScoreFont.xnb
 Content\Fonts\SplashScreenFont.xnb
 Content\Fonts\SplashScreenFontLarge.xnb
-Content\Fonts\ScoreFont.xnb
 Content\Fonts\PowerUpFont.xnb
 Content\Audio\GameAudio.xgs
 Content\Audio\Wave Bank.xwb

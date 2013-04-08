@@ -42,6 +42,10 @@ namespace _3D_Game
         List<BasicModel> shots = new List<BasicModel>();
         float shotMinZ = -3000;
 
+        //Special shots
+        List<BasicModel> specialShots = new List<BasicModel>(); //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+
+
         //Variables for explosion
         List<ParticleExplosion> explosions = new List<ParticleExplosion>();
         ParticleExplosionSettings particleExplosionSettings = new ParticleExplosionSettings();
@@ -62,6 +66,59 @@ namespace _3D_Game
         public int consecutiveKills = 0;
         int rapidFireKillRequirement = 3;
 
+        //Class variable for postion and direction for Enemy
+        public //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+         Vector3 tempPosition;
+        Vector3 tempDirection;
+
+        // for special shot position &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+        public
+            Vector3 specialShotPosition;
+            Vector3 specialShotDirection;
+
+
+    
+        public void setDirectionEnemy(Vector3 dirc)
+        {
+            this.tempDirection = dirc;
+
+        }
+
+        public Vector3 getDirectionEnemy
+        {
+          get {  return tempDirection;}
+
+        }
+
+      public Vector3 getPositionEnemy()
+        {
+            return tempPosition;
+        } 
+
+
+           public void setPositionEnemy(Vector3 pos)
+       {
+           this.tempPosition = pos;
+          
+       }
+
+
+           public void setSpecialShotpositionDirection(Vector3 position1, Vector3 direction1)
+           {
+               this.specialShotPosition = position1;
+               this.specialShotDirection = direction1;
+                   
+           }
+
+           public Vector3 getSpecialShotPosition()
+           {
+               return specialShotPosition;
+           }
+
+           public Vector3 getSpecialShotDirection()
+           {
+               return specialShotDirection;
+           } 
 
 
         public ModelManager(Game game)
@@ -139,6 +196,10 @@ namespace _3D_Game
             // Update shots
             UpdateShots();
 
+            //Update Special Shot
+            UpdateSpecialShots();
+
+            
             //Update the explosion
             UpdateExplosion(gameTime);
 
@@ -188,6 +249,13 @@ namespace _3D_Game
             {
                 bm.Draw(((Game1)Game).camera);
             }
+
+            // Loop through and draw each special shot
+            foreach (BasicModel bm in specialShots) //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+            {
+                bm.Draw(((Game1)Game).camera);
+            }
+
 
             foreach (ParticleExplosion pe in explosions)
             {
@@ -246,12 +314,16 @@ namespace _3D_Game
                 -(int)maxSpawnLocation.Y, (int)maxSpawnLocation.Y),
                 maxSpawnLocation.Z);
 
+             setPositionEnemy(position); //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+
             // Direction will always be (0, 0, Z), where
             // Z is a random value between minSpeed and maxSpeed
             Vector3 direction = new Vector3(0, 0,
                 ((Game1)Game).rnd.Next(
                 levelInfoList[currentLevel].minSpeed,
                 levelInfoList[currentLevel].maxSpeed));
+
+            setDirectionEnemy(direction); //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 
             // Get a random roll rotation between -maxRollAngle and maxRollAngle
             float rollRotation = (float)((Game1)Game).rnd.NextDouble() *
@@ -262,16 +334,107 @@ namespace _3D_Game
                 Game.Content.Load<Model>(@"models\spaceship"),
                 position, direction, 0, 0, rollRotation));
 
+          //  AddSpecialShots(position, direction);
+
             // Increment # of enemies this level and set next spawn time
             ++enemiesThisLevel;
             SetNextSpawnTime();
         }
+
+        
 
         public void AddShot(Vector3 position, Vector3 direction)
         {
             shots.Add(new SpinningEnemy(
                 Game.Content.Load<Model>(@"models\ammo"),
                 position, direction, 0, 0, 0));
+        }
+
+        public void AddSpecialShots(Vector3 position, Vector3 direction) //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+        {
+            specialShots.Add(new SpinningEnemy(Game.Content.Load<Model>(@"models\ammo"),
+                position, direction, 0, 0, 0));
+
+            setSpecialShotpositionDirection(position, direction); // &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+
+        }
+
+
+
+        protected void UpdateSpecialShots() // &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+        {
+            for (int i = 0; i < specialShots.Count; ++i)
+            {
+                // Update each shot
+                specialShots[i].Update();
+
+                // If shot is out of bounds, remove it from game
+                if (specialShots[i].GetWorld().Translation.Z < shotMinZ)
+                {
+                    specialShots.RemoveAt(i);
+                    --i;
+                }
+                else
+                {
+                    // If shot is still in play, check for collisions
+                    for (int j = 0; j < models.Count; ++j)
+                    {
+                        Vector3 enemyPos = getPositionEnemy();
+
+                        Vector3 specialShotPos = getSpecialShotPosition();
+
+                        Vector3 speedVal = getSpecialShotDirection();
+
+                        if (enemyPos.Z < specialShotPos.Z)
+                            specialShotPos.Z -= speedVal.Z;
+                        else if (enemyPos.Z > specialShotPos.Z)
+                            specialShotPos.Z += speedVal.Z;
+
+
+                        
+
+
+
+                        if (specialShots[i].CollidesWith(models[j].model,
+                            models[j].GetWorld()))
+                        {
+                            //clolision add explosion 
+                            explosions.Add(new ParticleExplosion(GraphicsDevice,
+                                models[j].GetWorld().Translation,
+                                ((Game1)Game).rnd.Next(
+                                particleExplosionSettings.minLife,
+                                particleExplosionSettings.maxLife),
+                                ((Game1)Game).rnd.Next(
+                                particleExplosionSettings.minRoundTime,
+                                particleExplosionSettings.maxRoundTime),
+                                ((Game1)Game).rnd.Next(
+                                particleExplosionSettings.minParticlePerRound,
+                                particleExplosionSettings.maxParticlePreRound),
+                                ((Game1)Game).rnd.Next(
+                                particleExplosionSettings.minParticles,
+                                particleExplosionSettings.maxParticles),
+                                explosionColorsTexture, particleSettings,
+                                explosionEffect));
+
+
+                            ((Game1)Game).AddPoints(pointsPerKill * (currentLevel + 1));
+                            // Collision! Remove the ship and the shot.
+                            models.RemoveAt(j);
+                            specialShots.RemoveAt(i);
+                            --i;
+
+                            ((Game1)Game).PlayCue("Explosions");
+                            //Update tje consecutive kill count
+                            ++consecutiveKills;
+                            if (consecutiveKills == rapidFireKillRequirement)
+                            {
+                                ((Game1)Game).StartPowerUp(Game1.PowerUps.RAPID_FIRE);
+                            }
+                            break;
+                        }
+                    }
+                }
+            }
         }
 
         protected void UpdateShots()

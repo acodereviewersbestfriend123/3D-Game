@@ -18,3 +18,23 @@ C:\Users\mini hp\Documents\Visual Studio 2010\3DProject\3D Game\3D Game\3D Game\
 C:\Users\mini hp\Documents\Visual Studio 2010\3DProject\3D Game\3D Game\3D Game\bin\x86\Debug\Content\Fonts\SplashScreenFontLarge.xnb
 C:\Users\mini hp\Documents\Visual Studio 2010\3DProject\3D Game\3D Game\3D Game\bin\x86\Debug\Content\Fonts\ScoreFont.xnb
 C:\Users\mini hp\Documents\Visual Studio 2010\3DProject\3D Game\3D Game\3D Game\bin\x86\Debug\Content\Fonts\PowerUpFont.xnb
+C:\Users\Julian\Documents\GitHub\3D-Game\3D Game\3D Game\bin\x86\Debug\Content\Models\spaceship.xnb
+C:\Users\Julian\Documents\GitHub\3D-Game\3D Game\3D Game\bin\x86\Debug\Content\Models\ammo.xnb
+C:\Users\Julian\Documents\GitHub\3D-Game\3D Game\3D Game\bin\x86\Debug\Content\Textures\Particle.xnb
+C:\Users\Julian\Documents\GitHub\3D-Game\3D Game\3D Game\bin\x86\Debug\Content\Textures\Crosshair.xnb
+C:\Users\Julian\Documents\GitHub\3D-Game\3D Game\3D Game\bin\x86\Debug\Content\Textures\ParticleColors.xnb
+C:\Users\Julian\Documents\GitHub\3D-Game\3D Game\3D Game\bin\x86\Debug\Content\Textures\Stars.xnb
+C:\Users\Julian\Documents\GitHub\3D-Game\3D Game\3D Game\bin\x86\Debug\Content\Effects\Particle.xnb
+C:\Users\Julian\Documents\GitHub\3D-Game\3D Game\3D Game\bin\x86\Debug\Content\Fonts\ScoreFont.xnb
+C:\Users\Julian\Documents\GitHub\3D-Game\3D Game\3D Game\bin\x86\Debug\Content\Fonts\SplashScreenFont.xnb
+C:\Users\Julian\Documents\GitHub\3D-Game\3D Game\3D Game\bin\x86\Debug\Content\Fonts\SplashScreenFontLarge.xnb
+C:\Users\Julian\Documents\GitHub\3D-Game\3D Game\3D Game\bin\x86\Debug\Content\Fonts\PowerUpFont.xnb
+C:\Users\Julian\Documents\GitHub\3D-Game\3D Game\3D Game\bin\x86\Debug\Content\Audio\GameAudio.xgs
+C:\Users\Julian\Documents\GitHub\3D-Game\3D Game\3D Game\bin\x86\Debug\Content\Audio\Wave Bank.xwb
+C:\Users\Julian\Documents\GitHub\3D-Game\3D Game\3D Game\bin\x86\Debug\Content\Audio\Sound Bank.xsb
+C:\Users\Julian\Documents\GitHub\3D-Game\3D Game\3D Game\bin\x86\Debug\3D Game.exe
+C:\Users\Julian\Documents\GitHub\3D-Game\3D Game\3D Game\bin\x86\Debug\3D Game.pdb
+C:\Users\Julian\Documents\GitHub\3D-Game\3D Game\3D Game\obj\x86\Debug\3D Game.csprojResolveAssemblyReference.cache
+C:\Users\Julian\Documents\GitHub\3D-Game\3D Game\3D Game\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\Julian\Documents\GitHub\3D-Game\3D Game\3D Game\obj\x86\Debug\3D Game.exe
+C:\Users\Julian\Documents\GitHub\3D-Game\3D Game\3D Game\obj\x86\Debug\3D Game.pdb
