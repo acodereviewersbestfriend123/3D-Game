@@ -128,6 +128,7 @@ namespace _3D_Game
         public
             int alliance = 0;
             int lifeAndWeapon = 0;
+            int colliedTrackForLifeAndWeapon = 0;
       
 
         public ModelManager(Game game)
@@ -606,6 +607,9 @@ namespace _3D_Game
         protected void UpdateShots()
         {
             // Loop through shots
+                     
+                   
+            
             for (int i = 0; i < shots.Count; ++i)
             {
                 // Update each shot
@@ -618,12 +622,19 @@ namespace _3D_Game
                     --i;
                 }
 
-               else if (shots[i].CollidesWith(lifeAndWeaponList[0].model, lifeAndWeaponList[0].GetWorld()))
-                {
-                    
+                else if (colliedTrackForLifeAndWeapon < 2)
+
+                    for (int k = 0; k < lifeAndWeaponList.Count; ++k)
+                    {
+
+
+
+                        if (shots[i].CollidesWith(lifeAndWeaponList[k].model, lifeAndWeaponList[k].GetWorld()))
+                        {
+
                             //clolision add explosion 
                             explosions.Add(new ParticleExplosion(GraphicsDevice,
-                                lifeAndWeaponList[0].GetWorld().Translation,
+                                lifeAndWeaponList[k].GetWorld().Translation,
                                 ((Game1)Game).rnd.Next(
                                 particleExplosionSettings.minLife,
                                 particleExplosionSettings.maxLife),
@@ -640,13 +651,15 @@ namespace _3D_Game
                                 explosionEffect));
 
 
-                          //  ((Game1)Game).AddPoints(pointsPerKill * (currentLevel + 1));
+                            //  ((Game1)Game).AddPoints(pointsPerKill * (currentLevel + 1));
                             // Collision! Remove the ship and the shot.
-                            lifeAndWeaponList.RemoveAt(0);
+                            lifeAndWeaponList.RemoveAt(k);
                             shots.RemoveAt(i);
                             --i;
+                            ++colliedTrackForLifeAndWeapon;
                             ((Game1)Game).PlayCue("Explosions");
-                        //    break;
+                            break;
+                        }
                     }
            
                     
@@ -695,6 +708,8 @@ namespace _3D_Game
                             {
                                 ((Game1)Game).StartPowerUp(Game1.PowerUps.RAPID_FIRE);
                             }
+
+
                             break;
                         }
                         
