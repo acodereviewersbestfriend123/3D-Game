@@ -51,7 +51,8 @@ namespace _3D_Game
             //Build camera view Metrex
             cameraPosition = pos;
             cameraDirection = target - pos;
-            cameraDirection.Normalize(); cameraUp = up;
+            cameraDirection.Normalize(); 
+            cameraUp = up;
             CreateLookAt();
 
 

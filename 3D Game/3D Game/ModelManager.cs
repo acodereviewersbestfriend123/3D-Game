@@ -45,6 +45,12 @@ namespace _3D_Game
         //Special shots
         List<BasicModel> specialShots = new List<BasicModel>(); //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 
+        //Alliance 
+        List<BasicModel> allianceList = new List<BasicModel>(); // &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& for alliance
+
+        //Speacial weapon and life up boxes
+        List<BasicModel> lifeAndWeaponList = new List<BasicModel>();// &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& for life and weapon boxs
+
 
         //Variables for explosion
         List<ParticleExplosion> explosions = new List<ParticleExplosion>();
@@ -119,7 +125,10 @@ namespace _3D_Game
            {
                return specialShotDirection;
            } 
-
+        public
+            int alliance = 0;
+            int lifeAndWeapon = 0;
+      
 
         public ModelManager(Game game)
             : base(game)
@@ -150,6 +159,7 @@ namespace _3D_Game
         {
             // Set initial spawn time
             SetNextSpawnTime();
+            
 
             base.Initialize();
         }
@@ -193,6 +203,12 @@ namespace _3D_Game
             // Update models
             UpdateModels();
 
+            //Update Alliance
+            UpdateSpawnAlliance();
+
+            //Update life and weapon box
+            UpdateSpawnMissileAndLife();
+
             // Update shots
             UpdateShots();
 
@@ -214,12 +230,13 @@ namespace _3D_Game
                 // Update each model
                 models[i].Update();
 
+             
                 // Remove models that are out of bounds
-                if (models[i].GetWorld().Translation.Z >
-                    ((Game1)Game).camera.cameraPosition.Z + 100)
+                 if (models[i].GetWorld().Translation.Z >
+                    ((Game1)Game).camera.cameraPosition.Z + 200)
                 {
 
-                    //If player has missed the ship
+                    //If player has missed the ship &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 
                     ++missedThisLevel;
                     if (missedThisLevel >
@@ -232,6 +249,8 @@ namespace _3D_Game
                     consecutiveKills = 0;
                     models.RemoveAt(i);
                     --i;
+
+                 
                 }
             }
         }
@@ -240,6 +259,18 @@ namespace _3D_Game
         {
             // Loop through and draw each model
             foreach (BasicModel bm in models)
+            {
+                bm.Draw(((Game1)Game).camera);
+            }
+
+            //Loop through the Alliance
+            foreach (BasicModel bm in allianceList)
+            {
+                bm.Draw(((Game1)Game).camera);
+            }
+
+            //Loop through the life and missile box
+            foreach (BasicModel bm in lifeAndWeaponList)
             {
                 bm.Draw(((Game1)Game).camera);
             }
@@ -266,6 +297,7 @@ namespace _3D_Game
             base.Draw(gameTime);
         }
 
+
         private void SetNextSpawnTime()
         {
             // Reset the variables to indicate the next enemy spawn time
@@ -274,6 +306,7 @@ namespace _3D_Game
                 levelInfoList[currentLevel].maxSpawnTime);
             timeSinceLastSpawn = 0;
         }
+
 
         protected void CheckToSpawnEnemy(GameTime gameTime)
         {
@@ -285,17 +318,31 @@ namespace _3D_Game
                 if (timeSinceLastSpawn > nextSpawnTime)
                 {
                     SpawnEnemy();
+                    SpawnAlliance();
+                    SpawnMissileAndLife();
                 }
             }
 
             else
             {
-                if (explosions.Count == 0 && models.Count == 0)
+                if (explosions.Count == 0 && models.Count == 0) // &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&  reset for every room
                 {
                     // All explosion and ships are removed and the level is over
                     ++currentLevel;
                     enemiesThisLevel = 0;
                     missedThisLevel = 0;
+                    alliance = 0;
+                    lifeAndWeapon = 0;
+                    
+                    for (int i = 0; i < lifeAndWeaponList.Count ; ++i) //&&&&&&&&&&&&&&&&&&&&& I have a problem removing all the lifeandWeaponlist models
+                    {
+                        // Update each Alliance
+                        lifeAndWeaponList.RemoveAt(i);
+                        
+                    
+                    }
+                    
+
                     ((Game1)Game).ChangeGameState(
                         Game1.GameState.LEVEL_CHANGE,
                         currentLevel);
@@ -334,11 +381,131 @@ namespace _3D_Game
                 Game.Content.Load<Model>(@"models\spaceship"),
                 position, direction, 0, 0, rollRotation));
 
-          //  AddSpecialShots(position, direction);
-
+                     
+            
             // Increment # of enemies this level and set next spawn time
             ++enemiesThisLevel;
             SetNextSpawnTime();
+        }
+
+        // For spawn life and missile boxes
+
+        private void SpawnMissileAndLife()
+        {
+            // add speacial weapon and life box &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+
+            Vector3 lifeAndWeaponPosition = new Vector3(((Game1)Game).rnd.Next(
+                -(int)maxSpawnLocation.X, (int)maxSpawnLocation.X),
+                ((Game1)Game).rnd.Next(
+                -(int)maxSpawnLocation.Y, (int)maxSpawnLocation.Y),
+                -200);
+
+            Vector3 lifeAndWeaponDirection = new Vector3(0, 0, 0); // -20 its the speed of the spaceship
+
+            if (lifeAndWeapon < 2)
+            {
+
+                lifeAndWeaponList.Add(new SpinningEnemy(
+                   Game.Content.Load<Model>(@"models\spaceship"),
+                   lifeAndWeaponPosition, lifeAndWeaponDirection, -0.1f, 0, 0)); // 5 is a Yaw speed
+                ++lifeAndWeapon;
+            }
+
+        }
+
+        public void UpdateSpawnMissileAndLife()
+        {
+            for (int i = 0; i < lifeAndWeaponList.Count; ++i)
+            {
+                // Update each Alliance
+                lifeAndWeaponList[i].Update();
+            }
+        }
+
+        private void SpawnAlliance() // for spawn The alliance ship
+        {
+            // Add alliance objects that will fly from camera side to the depth &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+
+            Vector3 alliancePosition = new Vector3(((Game1)Game).rnd.Next(
+                -(int)maxSpawnLocation.X, (int)maxSpawnLocation.X) +50,
+                ((Game1)Game).rnd.Next(
+                -(int)maxSpawnLocation.Y, (int)maxSpawnLocation.Y),
+                -10);
+            
+            Vector3 allianceDirection = new Vector3(0, 0, -2); // -20 its the speed of the spaceship 
+
+            if (alliance < 5)
+            {
+                allianceList.Add(new SpinningEnemy(
+                Game.Content.Load<Model>(@"models\spaceship"),
+                alliancePosition, allianceDirection, 0, 0, 5)); // 5 is a rolling speed
+
+                ++alliance;
+
+            }
+          
+        }
+
+        public void UpdateSpawnAlliance() //&&&&&&&&&&&&&&&&&&&&&&&&& for Alliance ship
+        {
+            for (int i = 0; i < allianceList.Count; ++i)
+            {
+                // Update each Alliance
+                allianceList[i].Update();
+
+                if (allianceList[i].GetWorld().Translation.Z < shotMinZ)
+                {
+                    allianceList.RemoveAt(i);
+                    --i;
+                }
+                else
+                {
+                    // If shot is still in play, check for collisions
+                    for (int j = 0; j < models.Count; ++j)
+                    {
+
+                        if (allianceList[i].CollidesWith(models[j].model,
+                            models[j].GetWorld()))
+                        {
+                            //clolision add explosion 
+                            explosions.Add(new ParticleExplosion(GraphicsDevice,
+                                models[j].GetWorld().Translation,
+                                ((Game1)Game).rnd.Next(
+                                particleExplosionSettings.minLife,
+                                particleExplosionSettings.maxLife),
+                                ((Game1)Game).rnd.Next(
+                                particleExplosionSettings.minRoundTime,
+                                particleExplosionSettings.maxRoundTime),
+                                ((Game1)Game).rnd.Next(
+                                particleExplosionSettings.minParticlePerRound,
+                                particleExplosionSettings.maxParticlePreRound),
+                                ((Game1)Game).rnd.Next(
+                                particleExplosionSettings.minParticles,
+                                particleExplosionSettings.maxParticles),
+                                explosionColorsTexture, particleSettings,
+                                explosionEffect));
+
+
+                            ((Game1)Game).AddPoints(pointsPerKill * (currentLevel + 1));     
+                                // Collision! Remove the ship and the shot.
+                            models.RemoveAt(j);
+                            allianceList.RemoveAt(i);
+                            --i;
+                            ((Game1)Game).PlayCue("Explosions");
+                            //Update tje consecutive kill count
+                         //   ++consecutiveKills;
+                         //   if (consecutiveKills == rapidFireKillRequirement)
+                       //     {
+                       //         ((Game1)Game).StartPowerUp(Game1.PowerUps.RAPID_FIRE);
+                       //     }
+                           break;
+                        }
+                    }
+                }
+                
+            }
+            
+            
         }
 
         
@@ -383,18 +550,17 @@ namespace _3D_Game
 
                         Vector3 specialShotPos = getSpecialShotPosition();
 
-                        Vector3 speedVal = getSpecialShotDirection();
+                        Vector3 speedVal = -getSpecialShotDirection();
 
                         if (enemyPos.Z < specialShotPos.Z)
                             specialShotPos.Z -= speedVal.Z;
                         else if (enemyPos.Z > specialShotPos.Z)
-                            specialShotPos.Z += speedVal.Z;
+                            specialShotPos.Z -= speedVal.Z;
 
 
                         
-
-
-
+                      
+                        
                         if (specialShots[i].CollidesWith(models[j].model,
                             models[j].GetWorld()))
                         {
@@ -451,11 +617,49 @@ namespace _3D_Game
                     shots.RemoveAt(i);
                     --i;
                 }
-                else
+
+               else if (shots[i].CollidesWith(lifeAndWeaponList[0].model, lifeAndWeaponList[0].GetWorld()))
                 {
+                    
+                            //clolision add explosion 
+                            explosions.Add(new ParticleExplosion(GraphicsDevice,
+                                lifeAndWeaponList[0].GetWorld().Translation,
+                                ((Game1)Game).rnd.Next(
+                                particleExplosionSettings.minLife,
+                                particleExplosionSettings.maxLife),
+                                ((Game1)Game).rnd.Next(
+                                particleExplosionSettings.minRoundTime,
+                                particleExplosionSettings.maxRoundTime),
+                                ((Game1)Game).rnd.Next(
+                                particleExplosionSettings.minParticlePerRound,
+                                particleExplosionSettings.maxParticlePreRound),
+                                ((Game1)Game).rnd.Next(
+                                particleExplosionSettings.minParticles,
+                                particleExplosionSettings.maxParticles),
+                                explosionColorsTexture, particleSettings,
+                                explosionEffect));
+
+
+                          //  ((Game1)Game).AddPoints(pointsPerKill * (currentLevel + 1));
+                            // Collision! Remove the ship and the shot.
+                            lifeAndWeaponList.RemoveAt(0);
+                            shots.RemoveAt(i);
+                            --i;
+                            ((Game1)Game).PlayCue("Explosions");
+                        //    break;
+                    }
+           
+                    
+                    else
+                    {
+
                     // If shot is still in play, check for collisions
                     for (int j = 0; j < models.Count; ++j)
                     {
+                        //Check if shot colid with powerup or lifeup
+                        
+
+                        // check if shot colid with enemy
                         if (shots[i].CollidesWith(models[j].model,
                             models[j].GetWorld()))
                         {
@@ -486,16 +690,20 @@ namespace _3D_Game
                             ((Game1)Game).PlayCue("Explosions");
                             //Update tje consecutive kill count
                             ++consecutiveKills;
+
                             if (consecutiveKills == rapidFireKillRequirement)
                             {
                                 ((Game1)Game).StartPowerUp(Game1.PowerUps.RAPID_FIRE);
                             }
                             break;
                         }
+                        
                     }
                 }
             }
         }
+
+
 
         protected void UpdateExplosion(GameTime gameTime)
         {
