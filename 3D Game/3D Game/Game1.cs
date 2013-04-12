@@ -125,8 +125,8 @@ namespace _3D_Game
             Content.RootDirectory = "Content";
             rnd = new Random();
 
-            graphics.PreferredBackBufferWidth = 800;
-            graphics.PreferredBackBufferHeight = 600;
+            graphics.PreferredBackBufferWidth = 1024;
+            graphics.PreferredBackBufferHeight = 768;
 
 #if !DEBUG
             graphics.IsFullScreen = true;
@@ -171,7 +171,7 @@ namespace _3D_Game
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            crosshairTexture = Content.Load<Texture2D>(@"textures\crosshair");
+            crosshairTexture = Content.Load<Texture2D>(@"textures\spaceship_cockpit");
             powerUpFont = Content.Load<SpriteFont>(@"fonts\PowerUpFont");
             //Load sound
             audioEngine = new AudioEngine(@"Content\Audio\GameAudio.xgs");
@@ -254,12 +254,19 @@ namespace _3D_Game
                     modelManager.missesLeft,
                     new Vector2(10, scoreFont.MeasureString(scoreText).Y + 10),
                     Color.Red);
-                spriteBatch.Draw(crosshairTexture,
+
+            /*    spriteBatch.Draw(crosshairTexture,
                     new Vector2((Window.ClientBounds.Width / 2)
                     - (crosshairTexture.Width / 2),
                     (Window.ClientBounds.Height / 2)
                     - (crosshairTexture.Height / 2)),
-                Color.White);
+                Color.White); */
+
+                spriteBatch.Draw(crosshairTexture, new Rectangle(0, 0,
+                    Window.ClientBounds.Width, Window.ClientBounds.Height),
+                    null,Color.White, 0, Vector2.Zero,
+                    SpriteEffects.None, 0);
+
 
                 // If power up time is a live
                 if (powerUpTextTimer > 0)

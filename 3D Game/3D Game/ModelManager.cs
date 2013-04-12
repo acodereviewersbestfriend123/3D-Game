@@ -334,6 +334,7 @@ namespace _3D_Game
                     missedThisLevel = 0;
                     alliance = 0;
                     lifeAndWeapon = 0;
+                    colliedTrackForLifeAndWeapon = 0;
                     
                     for (int i = 0; i < lifeAndWeaponList.Count ; ++i) //&&&&&&&&&&&&&&&&&&&&& I have a problem removing all the lifeandWeaponlist models
                     {
@@ -380,7 +381,7 @@ namespace _3D_Game
             // Add model to the list
             models.Add(new SpinningEnemy(
                 Game.Content.Load<Model>(@"models\spaceship"),
-                position, direction, 0, 0, rollRotation));
+                position, direction, 0, 0, 0)); // the origional value is // rollRotation
 
                      
             
@@ -438,8 +439,8 @@ namespace _3D_Game
             if (alliance < 5)
             {
                 allianceList.Add(new SpinningEnemy(
-                Game.Content.Load<Model>(@"models\spaceship"),
-                alliancePosition, allianceDirection, 0, 0, 5)); // 5 is a rolling speed
+                Game.Content.Load<Model>(@"models\ship1"),
+                alliancePosition, allianceDirection, 0, 0, 0)); // 5 is a rolling speed
 
                 ++alliance;
 

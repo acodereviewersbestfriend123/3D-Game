@@ -9,6 +9,16 @@ Content\Fonts\ScoreFont.xnb
 Content\Fonts\SplashScreenFont.xnb
 Content\Fonts\SplashScreenFontLarge.xnb
 Content\Fonts\PowerUpFont.xnb
+Content\Textures\spaceship_cockpit.xnb
+Content\Models\ship1.xnb
+Content\Models\ship2.xnb
+Content\Models\ship1_c_0.xnb
+Content\Models\ship2_c_0.xnb
+Content\Models\earth.xnb
+Content\Models\Realistic_earth.xnb
+Content\Models\asteroid.xnb
+Content\Models\energy.xnb
+Content\Models\energy_pwu_c_0.xnb
 Content\Audio\GameAudio.xgs
 Content\Audio\Wave Bank.xwb
 Content\Audio\Sound Bank.xsb

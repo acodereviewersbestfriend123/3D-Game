@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<XnaContent xmlns:Pipeline="Microsoft.Xna.Framework.Content.Pipeline">
+<XnaContent xmlns:Pipeline="Microsoft.Xna.Framework.Content.Pipeline" xmlns:Framework="Microsoft.Xna.Framework" xmlns:Processors="Microsoft.Xna.Framework.Content.Pipeline.Processors">
   <Asset Type="Pipeline:BuildItemCollection">
     <Item>
       <Source>Models\spaceship.x</Source>
@@ -121,6 +121,186 @@
       <Options>IntermediateFile, DontCacheImportedData</Options>
       <Output>obj\x86\Debug\Models\ammo_0.xml</Output>
       <Time>2013-04-03T23:03:28.6253387-07:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\spaceship_cockpit.png</Source>
+      <Name>Textures\spaceship_cockpit</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Julian\Documents\GitHub\3D-Game\3D Game\3D Game\bin\x86\Debug\Content\Textures\spaceship_cockpit.xnb</Output>
+      <Time>2013-04-11T09:35:59.5292019-07:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\ship1.fbx</Source>
+      <Name>Models\ship1</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Julian\Documents\GitHub\3D-Game\3D Game\3D Game\bin\x86\Debug\Content\Models\ship1.xnb</Output>
+      <Time>2013-04-11T21:22:42.742406-07:00</Time>
+      <Dependency>
+        <Key>obj\x86\Debug\Models\ship1_0.xml</Key>
+        <Value>2013-04-11T21:23:54.1909764-07:00</Value>
+      </Dependency>
+      <Request>C:\Users\Julian\Documents\GitHub\3D-Game\3D Game\3D Game\bin\x86\Debug\Content\Models\ship1_c_0.xnb</Request>
+    </Item>
+    <Item>
+      <Source>Models\ship2.fbx</Source>
+      <Name>Models\ship2</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Julian\Documents\GitHub\3D-Game\3D Game\3D Game\bin\x86\Debug\Content\Models\ship2.xnb</Output>
+      <Time>2013-04-11T21:22:43.6160416-07:00</Time>
+      <Dependency>
+        <Key>obj\x86\Debug\Models\ship2_0.xml</Key>
+        <Value>2013-04-11T21:23:57.9038141-07:00</Value>
+      </Dependency>
+      <Request>C:\Users\Julian\Documents\GitHub\3D-Game\3D Game\3D Game\bin\x86\Debug\Content\Models\ship2_c_0.xnb</Request>
+    </Item>
+    <Item>
+      <Source>Models\ship1.fbx</Source>
+      <Importer>FbxImporter</Importer>
+      <Options>IntermediateFile, DontCacheImportedData</Options>
+      <Output>obj\x86\Debug\Models\ship1_0.xml</Output>
+      <Time>2013-04-11T21:22:42.742406-07:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\ship1_c.tga</Source>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Parameters>
+        <Data Key="ColorKeyColor" Type="Framework:Color">FFFF00FF</Data>
+        <Data Key="ColorKeyEnabled" Type="bool">true</Data>
+        <Data Key="TextureFormat" Type="Processors:TextureProcessorOutputFormat">DxtCompressed</Data>
+        <Data Key="GenerateMipmaps" Type="bool">true</Data>
+        <Data Key="ResizeToPowerOfTwo" Type="bool">false</Data>
+        <Data Key="PremultiplyAlpha" Type="bool">true</Data>
+      </Parameters>
+      <Options>None</Options>
+      <Output>C:\Users\Julian\Documents\GitHub\3D-Game\3D Game\3D Game\bin\x86\Debug\Content\Models\ship1_c_0.xnb</Output>
+      <Time>2013-04-06T23:03:04.3458433-07:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\ship2.fbx</Source>
+      <Importer>FbxImporter</Importer>
+      <Options>IntermediateFile, DontCacheImportedData</Options>
+      <Output>obj\x86\Debug\Models\ship2_0.xml</Output>
+      <Time>2013-04-11T21:22:43.6160416-07:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\ship2_c.tga</Source>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Parameters>
+        <Data Key="ColorKeyColor" Type="Framework:Color">FFFF00FF</Data>
+        <Data Key="ColorKeyEnabled" Type="bool">true</Data>
+        <Data Key="TextureFormat" Type="Processors:TextureProcessorOutputFormat">DxtCompressed</Data>
+        <Data Key="GenerateMipmaps" Type="bool">true</Data>
+        <Data Key="ResizeToPowerOfTwo" Type="bool">false</Data>
+        <Data Key="PremultiplyAlpha" Type="bool">true</Data>
+      </Parameters>
+      <Options>None</Options>
+      <Output>C:\Users\Julian\Documents\GitHub\3D-Game\3D Game\3D Game\bin\x86\Debug\Content\Models\ship2_c_0.xnb</Output>
+      <Time>2013-04-06T23:03:04.6258935-07:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\earth.fbx</Source>
+      <Name>Models\earth</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Julian\Documents\GitHub\3D-Game\3D Game\3D Game\bin\x86\Debug\Content\Models\earth.xnb</Output>
+      <Time>2013-04-11T22:26:27.1800902-07:00</Time>
+      <Dependency>
+        <Key>obj\x86\Debug\Models\earth_0.xml</Key>
+        <Value>2013-04-11T22:26:48.2402733-07:00</Value>
+      </Dependency>
+    </Item>
+    <Item>
+      <Source>Models\earth.fbx</Source>
+      <Importer>FbxImporter</Importer>
+      <Options>IntermediateFile, DontCacheImportedData</Options>
+      <Output>obj\x86\Debug\Models\earth_0.xml</Output>
+      <Time>2013-04-11T22:26:27.1800902-07:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\Realistic_earth.fbx</Source>
+      <Name>Models\Realistic_earth</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Julian\Documents\GitHub\3D-Game\3D Game\3D Game\bin\x86\Debug\Content\Models\Realistic_earth.xnb</Output>
+      <Time>2013-04-11T22:29:39.125998-07:00</Time>
+      <Dependency>
+        <Key>obj\x86\Debug\Models\Realistic_earth_0.xml</Key>
+        <Value>2013-04-11T22:30:07.3922729-07:00</Value>
+      </Dependency>
+    </Item>
+    <Item>
+      <Source>Models\Realistic_earth.fbx</Source>
+      <Importer>FbxImporter</Importer>
+      <Options>IntermediateFile, DontCacheImportedData</Options>
+      <Output>obj\x86\Debug\Models\Realistic_earth_0.xml</Output>
+      <Time>2013-04-11T22:29:39.125998-07:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\asteroid.fbx</Source>
+      <Name>Models\asteroid</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Julian\Documents\GitHub\3D-Game\3D Game\3D Game\bin\x86\Debug\Content\Models\asteroid.xnb</Output>
+      <Time>2013-04-11T22:30:51.9035446-07:00</Time>
+      <Dependency>
+        <Key>obj\x86\Debug\Models\asteroid_0.xml</Key>
+        <Value>2013-04-11T22:31:11.2321653-07:00</Value>
+      </Dependency>
+    </Item>
+    <Item>
+      <Source>Models\asteroid.fbx</Source>
+      <Importer>FbxImporter</Importer>
+      <Options>IntermediateFile, DontCacheImportedData</Options>
+      <Output>obj\x86\Debug\Models\asteroid_0.xml</Output>
+      <Time>2013-04-11T22:30:51.9035446-07:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\energy.fbx</Source>
+      <Name>Models\energy</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Julian\Documents\GitHub\3D-Game\3D Game\3D Game\bin\x86\Debug\Content\Models\energy.xnb</Output>
+      <Time>2013-04-11T23:03:50.4874765-07:00</Time>
+      <Dependency>
+        <Key>obj\x86\Debug\Models\energy_0.xml</Key>
+        <Value>2013-04-11T23:04:04.0147626-07:00</Value>
+      </Dependency>
+      <Request>C:\Users\Julian\Documents\GitHub\3D-Game\3D Game\3D Game\bin\x86\Debug\Content\Models\energy_pwu_c_0.xnb</Request>
+    </Item>
+    <Item>
+      <Source>Models\energy.fbx</Source>
+      <Importer>FbxImporter</Importer>
+      <Options>IntermediateFile, DontCacheImportedData</Options>
+      <Output>obj\x86\Debug\Models\energy_0.xml</Output>
+      <Time>2013-04-11T23:03:50.4874765-07:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\energy_pwu_c.tga</Source>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Parameters>
+        <Data Key="ColorKeyColor" Type="Framework:Color">FFFF00FF</Data>
+        <Data Key="ColorKeyEnabled" Type="bool">true</Data>
+        <Data Key="TextureFormat" Type="Processors:TextureProcessorOutputFormat">DxtCompressed</Data>
+        <Data Key="GenerateMipmaps" Type="bool">true</Data>
+        <Data Key="ResizeToPowerOfTwo" Type="bool">false</Data>
+        <Data Key="PremultiplyAlpha" Type="bool">true</Data>
+      </Parameters>
+      <Options>None</Options>
+      <Output>C:\Users\Julian\Documents\GitHub\3D-Game\3D Game\3D Game\bin\x86\Debug\Content\Models\energy_pwu_c_0.xnb</Output>
+      <Time>2013-04-06T23:03:00.1383015-07:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>

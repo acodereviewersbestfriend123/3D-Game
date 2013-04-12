@@ -38,3 +38,13 @@ C:\Users\Julian\Documents\GitHub\3D-Game\3D Game\3D Game\obj\x86\Debug\3D Game.c
 C:\Users\Julian\Documents\GitHub\3D-Game\3D Game\3D Game\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
 C:\Users\Julian\Documents\GitHub\3D-Game\3D Game\3D Game\obj\x86\Debug\3D Game.exe
 C:\Users\Julian\Documents\GitHub\3D-Game\3D Game\3D Game\obj\x86\Debug\3D Game.pdb
+C:\Users\Julian\Documents\GitHub\3D-Game\3D Game\3D Game\bin\x86\Debug\Content\Textures\spaceship_cockpit.xnb
+C:\Users\Julian\Documents\GitHub\3D-Game\3D Game\3D Game\bin\x86\Debug\Content\Models\ship1.xnb
+C:\Users\Julian\Documents\GitHub\3D-Game\3D Game\3D Game\bin\x86\Debug\Content\Models\ship2.xnb
+C:\Users\Julian\Documents\GitHub\3D-Game\3D Game\3D Game\bin\x86\Debug\Content\Models\ship1_c_0.xnb
+C:\Users\Julian\Documents\GitHub\3D-Game\3D Game\3D Game\bin\x86\Debug\Content\Models\ship2_c_0.xnb
+C:\Users\Julian\Documents\GitHub\3D-Game\3D Game\3D Game\bin\x86\Debug\Content\Models\earth.xnb
+C:\Users\Julian\Documents\GitHub\3D-Game\3D Game\3D Game\bin\x86\Debug\Content\Models\Realistic_earth.xnb
+C:\Users\Julian\Documents\GitHub\3D-Game\3D Game\3D Game\bin\x86\Debug\Content\Models\asteroid.xnb
+C:\Users\Julian\Documents\GitHub\3D-Game\3D Game\3D Game\bin\x86\Debug\Content\Models\energy.xnb
+C:\Users\Julian\Documents\GitHub\3D-Game\3D Game\3D Game\bin\x86\Debug\Content\Models\energy_pwu_c_0.xnb
